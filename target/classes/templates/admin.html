@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Admin Console | ResolveIT</title><link rel="stylesheet" href="/css/style.css"></head>
+<body><div th:replace="~{fragments :: nav}"></div>
+<main class="container admin-page">
+  <div class="page-heading admin-heading"><div><span class="eyebrow">MANAGEMENT CONSOLE</span><h1>Complaint overview</h1><p>Review, prioritize, and update campus complaints.</p></div><a class="btn btn-primary" href="/complaints/new">＋ New complaint</a></div>
+  <section class="stats-grid admin-stats">
+    <div class="stat-card"><div class="stat-icon purple">▤</div><div><span>Total complaints</span><strong th:text="${totalCount}">0</strong></div></div>
+    <div class="stat-card"><div class="stat-icon amber">◷</div><div><span>Submitted</span><strong th:text="${submittedCount}">0</strong></div></div>
+    <div class="stat-card"><div class="stat-icon blue">↻</div><div><span>In progress</span><strong th:text="${progressCount}">0</strong></div></div>
+    <div class="stat-card"><div class="stat-icon green">✓</div><div><span>Resolved</span><strong th:text="${resolvedCount}">0</strong></div></div>
+  </section>
+  <section class="table-card">
+    <div class="table-heading"><div><h2>All complaints</h2><p>Search tickets and update their status.</p></div>
+      <form class="filter-form" action="/admin" method="get"><input name="q" placeholder="Search ID, title, name..." th:value="${q}"><select name="status"><option value="">All statuses</option><option th:selected="${selectedStatus == 'Submitted'}">Submitted</option><option th:selected="${selectedStatus == 'In Progress'}">In Progress</option><option th:selected="${selectedStatus == 'Resolved'}">Resolved</option><option th:selected="${selectedStatus == 'Rejected'}">Rejected</option></select><button class="btn btn-primary btn-small">Filter</button></form>
+    </div>
+    <div class="table-wrap"><table><thead><tr><th>Ticket</th><th>Complaint</th><th>Submitted by</th><th>Priority</th><th>Status / update</th></tr></thead><tbody>
+      <tr th:each="c : ${complaints}"><td><b th:text="'RI-' + ${c.id}">RI-1001</b><small th:text="${c.createdAtDisplay}">Date</small></td><td><b th:text="${c.title}">Title</b><small th:text="${c.category} + ' · ' + ${c.location}">Category</small></td><td><b th:text="${c.name}">Name</b><small th:text="${c.email}">Email</small></td><td><span class="priority" th:classappend="${c.priority.toLowerCase()}" th:text="${c.priority}">Medium</span></td><td><form class="inline-update" th:action="@{/admin/{id}/update(id=${c.id})}" method="post"><select name="status"><option th:selected="${c.status == 'Submitted'}">Submitted</option><option th:selected="${c.status == 'In Progress'}">In Progress</option><option th:selected="${c.status == 'Resolved'}">Resolved</option><option th:selected="${c.status == 'Rejected'}">Rejected</option></select><input name="remark" placeholder="Admin remark" th:value="${c.adminRemark}"><button class="btn btn-primary btn-small" type="submit">Save</button></form></td></tr>
+      <tr th:if="${#lists.isEmpty(complaints)}"><td colspan="5" class="empty-cell">No complaints match your search.</td></tr>
+    </tbody></table></div>
+  </section>
+  <div class="demo-warning"><b>Demo note:</b> This starter version stores complaints in memory. Data resets when the server restarts, and the admin page is not yet password-protected. Add database persistence and authentication before real-world use.</div>
+  <footer>© 2026 ResolveIT · Admin console</footer>
+</main></body></html>

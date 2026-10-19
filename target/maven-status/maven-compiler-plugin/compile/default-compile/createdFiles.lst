@@ -1,0 +1,3 @@
+com\resolveit\model\Complaint.class
+com\resolveit\controller\ComplaintController.class
+com\resolveit\ResolveItApplication.class
