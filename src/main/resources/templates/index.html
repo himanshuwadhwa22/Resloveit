@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
   <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
   <title>ResolveIT | Campus Help Desk</title><link rel="stylesheet" href="/css/style.css">
@@ -31,7 +31,7 @@
     <div class="stat-card"><div class="stat-icon blue">↻</div><div><span>In progress</span><strong th:text="${progressCount}">0</strong></div><small>Being reviewed</small></div>
     <div class="stat-card"><div class="stat-icon green">✓</div><div><span>Resolved</span><strong th:text="${resolvedCount}">0</strong></div><small>Completed</small></div>
   </section>
-  <section class="section-head"><div><span class="eyebrow">KEEP UP TO DATE</span><h2>Recent complaints</h2><p>Follow the latest activity from your campus.</p></div><a class="text-link" href="/admin">View all complaints →</a></section>
+  <section class="section-head"><div><span class="eyebrow">KEEP UP TO DATE</span><h2>Recent complaints</h2><p>Follow the latest activity from your campus.</p></div><a class="text-link" sec:authorize="hasRole('ADMIN')" href="/admin">View all complaints →</a></section>
   <section class="complaint-list">
     <article class="complaint-row" th:each="c : ${recentComplaints}">
       <div class="row-symbol" th:text="${c.category == 'IT & Wi-Fi' ? '⌁' : (c.category == 'Classroom' ? '▣' : '✦')}">▣</div>

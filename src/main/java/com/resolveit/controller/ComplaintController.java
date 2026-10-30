@@ -31,7 +31,9 @@ public class ComplaintController {
 
 
     @GetMapping("/login")
-    public String login() {
+    public String login(@RequestParam(required = false) String role, Model model) {
+        model.addAttribute("selectedRole", "ADMIN".equalsIgnoreCase(role) ? "ADMIN"
+                : ("STUDENT".equalsIgnoreCase(role) ? "STUDENT" : ""));
         return "login";
     }
 

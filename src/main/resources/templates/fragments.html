@@ -1,19 +1,11 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<body>
-<header class="topbar" th:fragment="nav">
-  <a class="brand" href="/"><span class="brand-mark">R</span><span>Resolve<span class="brand-light">IT</span><small>Campus help desk</small></span></a>
-  <nav>
-    <a href="/">Dashboard</a>
-    <a href="/complaints/new">Submit complaint</a>
-    <a href="/track">Track complaint</a>
-    <a href="/user">User workspace</a>
-    <a class="nav-admin" href="/admin">Admin</a>
-    <a href="/login">Sign in</a>
-    <form th:action="@{/logout}" method="post" style="display:inline">
-      <button type="submit" style="border:0;background:transparent;color:inherit;font:inherit;cursor:pointer">Sign out</button>
-    </form>
-  </nav>
-</header>
-</body>
-</html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<body><header class="topbar" th:fragment="nav">
+<a class="brand" href="/"><span class="brand-mark">R</span><span>Resolve<span class="brand-light">IT</span><small>Campus help desk</small></span></a>
+<nav><a href="/">Home</a>
+<span sec:authorize="hasRole('USER')"><a href="/user">Student workspace</a><a href="/complaints/new">Submit complaint</a><a href="/track">Track complaint</a></span>
+<span sec:authorize="hasRole('ADMIN')"><a href="/admin">Admin dashboard</a><a href="/track">Track complaint</a></span>
+<a sec:authorize="isAnonymous()" href="/login">Sign in</a>
+<form sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post" style="display:inline">
+<button type="submit" style="border:0;background:transparent;color:inherit;font:inherit;cursor:pointer">Sign out</button></form>
+</nav></header></body></html>

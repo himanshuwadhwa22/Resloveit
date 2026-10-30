@@ -19,6 +19,6 @@
       <tr th:if="${#lists.isEmpty(complaints)}"><td colspan="5" class="empty-cell">No complaints match your search.</td></tr>
     </tbody></table></div>
   </section>
-  <div class="demo-warning"><b>Demo note:</b> This starter version stores complaints in memory. Data resets when the server restarts, and the admin page is not yet password-protected. Add database persistence and authentication before real-world use.</div>
+  <div class="demo-warning"><b>Demo note:</b> Administrator access is protected by role-based sign-in. This project version still stores complaints in memory, so records reset when the server restarts. Connect the existing PostgreSQL database before using it for permanent complaint records.</div>
   <footer>© 2026 ResolveIT · Admin console</footer>
 </main></body></html>
