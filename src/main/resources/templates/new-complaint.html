@@ -5,7 +5,7 @@
 <main class="container form-page">
   <a class="back-link" href="/">← Back to dashboard</a>
   <div class="page-heading"><span class="eyebrow">CAMPUS SUPPORT</span><h1>Submit a complaint</h1><p>Tell us what happened. We'll route it to the right team.</p></div>
-  <form class="form-card" action="/complaints" method="post">
+  <form class="form-card" th:action="@{/complaints}" method="post">
     <div class="form-intro"><div class="form-intro-icon">✎</div><div><h2>Complaint details</h2><p>Fields marked with * are required.</p></div></div>
     <div class="form-grid">
       <label>Full name *<input name="name" required placeholder="e.g. Priya Sharma"></label>

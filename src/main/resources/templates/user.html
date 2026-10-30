@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Student Workspace | ResolveIT</title><link rel="stylesheet" href="/css/style.css"></head>
+<body>
+<div th:replace="~{fragments :: nav}"></div>
+<main class="container admin-page">
+  <div class="page-heading">
+    <span class="eyebrow">STUDENT WORKSPACE</span>
+    <h1>Your campus help desk</h1>
+    <p>Submit an issue and follow its progress from one place.</p>
+  </div>
+  <section class="stats-grid">
+    <div class="stat-card"><div class="stat-icon purple">▤</div><div><span>All campus complaints</span><strong th:text="${totalCount}">0</strong></div></div>
+    <div class="stat-card"><div class="stat-icon amber">◷</div><div><span>Awaiting action</span><strong th:text="${submittedCount}">0</strong></div></div>
+    <div class="stat-card"><div class="stat-icon blue">↻</div><div><span>In progress</span><strong th:text="${progressCount}">0</strong></div></div>
+    <div class="stat-card"><div class="stat-icon green">✓</div><div><span>Resolved</span><strong th:text="${resolvedCount}">0</strong></div></div>
+  </section>
+  <section class="bottom-cta">
+    <div><div class="eyebrow">NEED HELP?</div><h2>Raise a campus complaint</h2><p>Tell the support team what needs attention.</p></div>
+    <a class="btn btn-white" href="/complaints/new">Submit complaint →</a>
+  </section>
+  <section class="section-head"><div><span class="eyebrow">QUICK ACCESS</span><h2>Complaint services</h2><p>Use your ticket number to check a complaint's latest status.</p></div></section>
+  <div class="hero-actions">
+    <a class="btn btn-primary" href="/complaints/new">＋ Submit a complaint</a>
+    <a class="btn btn-outline" href="/track">Track a complaint ↗</a>
+  </div>
+  <div class="demo-warning"><b>Prototype note:</b> This version demonstrates separate student and administrator access. Complaint records are still stored in memory and the demo student account is shared. Add a persistent database and individual student accounts before using real student information.</div>
+  <footer>© 2026 ResolveIT · Student workspace</footer>
+</main>
+</body>
+</html>

@@ -29,6 +29,18 @@ public class ComplaintController {
         complaints.get(0).setStatus("In Progress");
     }
 
+
+    @GetMapping("/login")
+    public String login() {
+        return "login";
+    }
+
+    @GetMapping("/user")
+    public String userWorkspace(Model model) {
+        addDashboardData(model);
+        return "user";
+    }
+
     @GetMapping("/")
     public String home(Model model) {
         addDashboardData(model);

@@ -44,3 +44,39 @@ This version is a **demo prototype**, not production-ready:
 3. Build REST endpoints for Android.
 4. Add file upload validation and notifications.
 5. Create Android Studio app screens that call the backend API.
+
+
+## Role-based login (demo implementation)
+
+The application now includes Spring Security form login with two roles:
+
+- **USER** opens the Student Workspace at `/user`.
+- **ADMIN** opens the Administrator Complaint Console at `/admin`.
+
+Demo credentials for local testing:
+
+- Student: `student` / `Student@123`
+- Administrator: `admin` / `Admin@123`
+
+The passwords are BCrypt-encoded by Spring Security when the application starts. You can override the demo usernames and passwords with these environment variables:
+
+- `DEMO_STUDENT_USERNAME`
+- `DEMO_STUDENT_PASSWORD`
+- `DEMO_ADMIN_USERNAME`
+- `DEMO_ADMIN_PASSWORD`
+
+**Before redeploying publicly:** set all four variables in Render's Environment settings, especially a unique strong administrator password. Do not use the demo credentials for real users.
+
+### Current prototype limitations
+
+Accounts are currently configured in memory from environment variables; there is no self-service registration or per-student account database yet. Complaint records are also still stored in memory and can reset when the service restarts. The student workspace currently provides shared campus summary counts and complaint actions; individual complaint ownership/privacy requires the next database-and-account phase. Use fictional test information until persistent storage, individual accounts, and ownership checks are implemented.
+
+### Run locally
+
+Use Java 17 or later and run:
+
+```bash
+mvn spring-boot:run
+```
+
+Open `http://localhost:8080` and choose **Sign in**.

@@ -7,7 +7,12 @@
     <a href="/">Dashboard</a>
     <a href="/complaints/new">Submit complaint</a>
     <a href="/track">Track complaint</a>
+    <a href="/user">User workspace</a>
     <a class="nav-admin" href="/admin">Admin</a>
+    <a href="/login">Sign in</a>
+    <form th:action="@{/logout}" method="post" style="display:inline">
+      <button type="submit" style="border:0;background:transparent;color:inherit;font:inherit;cursor:pointer">Sign out</button>
+    </form>
   </nav>
 </header>
 </body>
